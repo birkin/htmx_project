@@ -10,13 +10,9 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
-from ocra_lookup_app.forms import CourseAndEmailForm 
-from ocra_lookup_app.lib import csv_maker
-from ocra_lookup_app.lib import leganto_final_processor
-from ocra_lookup_app.lib import results_view_helper
-from ocra_lookup_app.lib import version_helper
-from ocra_lookup_app.lib.version_helper import GatherCommitAndBranchData
-from ocra_lookup_app.models import CourseInfo
+
+from htmx_app.lib import version_helper
+from htmx_app.lib.version_helper import GatherCommitAndBranchData
 from uuid import UUID
 
 log = logging.getLogger(__name__)
