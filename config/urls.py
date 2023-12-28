@@ -1,18 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from ocra_lookup_app import views
+from htmx_app import views
 
 
 urlpatterns = [
     ## main ---------------------------------------------------------
-    # path( 'info/', views.info, name='info_url' ),
-    path( 'find/', views.find, name='find_url' ),
-    # path( 'form_handler/', views.form_handler, name='form_handler_url' ),
-    # path( 'results/', views.results, name='results_url' ),
-    path( 'results/<the_uuid>/', views.results, name='results_url' ),
-
-    path('view_tsv/<uuid:file_uuid>/', views.view_tsv, name='view_tsv'),
-    path('download_tsv/<uuid:file_uuid>/', views.download_tsv, name='download_tsv'),
+    ## TODO
 
     ## other --------------------------------------------------------
     path( '', views.root, name='root_url' ),
