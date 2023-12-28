@@ -40,13 +40,13 @@ Localdev using `docker-compose up`...
 """
 
 import os, pprint, sys
-import shellvars
+# import shellvars
 from django.core.wsgi import get_wsgi_application
 
 # print( 'the initial env, ```{}```'.format( pprint.pformat(dict(os.environ)) ) )
 
 PROJECT_DIR_PATH = os.path.dirname( os.path.dirname(os.path.abspath(__file__)) )  # the parent of the config directory is the project directory
-ENV_SETTINGS_FILE = os.environ['OCRA_LKP__ENV_SETTINGS_PATH']
+# ENV_SETTINGS_FILE = os.environ['OCRA_LKP__ENV_SETTINGS_PATH']
 
 ## update path
 sys.path.append( PROJECT_DIR_PATH )
@@ -55,9 +55,9 @@ sys.path.append( PROJECT_DIR_PATH )
 os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings'  # so django can access its settings
 
 ## load up env vars
-var_dct = shellvars.get_vars( ENV_SETTINGS_FILE )
-for ( key, val ) in var_dct.items():
-    os.environ[key.decode('utf-8')] = val.decode('utf-8')
+# var_dct = shellvars.get_vars( ENV_SETTINGS_FILE )
+# for ( key, val ) in var_dct.items():
+#     os.environ[key.decode('utf-8')] = val.decode('utf-8')
 
 # print( 'the final env, ```{}```'.format( pprint.pformat(dict(os.environ)) ) )
 
