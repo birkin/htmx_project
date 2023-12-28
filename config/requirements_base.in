@@ -1,0 +1,5 @@
+cryptography==41.0.7    # required by pymysql in certain situations
+Django==4.2.8
+# requests==2.29.0      # can't go higher, because it requires urllib3 2.x, which requires a version of open-ssl newer than the one on our servers.
+requests==2.31.0
+trio==0.23.2

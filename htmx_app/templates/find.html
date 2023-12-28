@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<style>
+
+    /* The errorlist class doesn't appear in this file; it's auto-created when necessary by the `form` object. */
+    .errorlist li {
+      color: rgb(167, 14, 14);
+    }
+
+    label {
+        text-align: right;
+        display: inline-block;
+        width: 150px;
+        margin-bottom: .5em;
+    }
+
+    .fields_info {
+        text-align: left;
+        font-size: 1em;
+        font-weight: normal;
+        color: rgb(167, 14, 14);
+        margin-bottom: 0.5em;
+        font-style: italic;
+    }
+
+</style>  
+{% endblock %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+<div id="purpose" style="width: 50em; margin: auto; padding-top: .5em;">
+    <h1 style="color: maroon;">Purpose</h1>
+    <p>This form allows Library staff to do a quick lookup in OCRA for the most recent OCRA reading-list for a given course and professor -- and get back a reading-list file that can be viewed, or uploaded directly to Leganto.</p>
+    <p>The "course-code" and "email-address" are for the OCRA search. The "Year", "Term", and "Title" are for Leganto fields.</p>
+    <p>
+        If you know the course-code, but not the exact email-address of the professor -- try looking up the course in 
+        "<a href="https://cab.brown.edu">Courses at Brown</a>", or look up the professor's name via Brown's 
+        "<a href="https://www.brown.edu/search/people">people-search</a>".
+    </p>
+</div>
+
+<!-- <div id="formbox" style="width: 600px; margin: auto; padding-top: 2em;"> -->
+<div id="formbox" style="width: 50em; margin: auto; padding-top: 2em;">
+
+    <fieldset name="Single File Upload">
+        <form action="{% url 'find_url' %}" method="post">
+            {% csrf_token %}
+        
+            {{ form.non_field_errors }}
+
+            <!-- Info line for OCRA search -->
+            <h1 class="fields_info">For OCRA search...</h1>
+
+            <!-- Course-code Field -->
+            {{ form.course_code.errors }}
+            {{ form.course_code.label_tag }}
+            {{ form.course_code }}
+            <!-- {{ form.course_code.help_text }} -->
+            <span style="font-size: 0.8em; font-style: italic; color: rgb(68, 57, 57);">( use the format HIST_1234a )</span>
+            <br>
+            
+            <!-- Email-address Field -->
+            {{ form.email_address.errors }}
+            {{ form.email_address.label_tag }}
+            {{ form.email_address }}
+            <br>
+
+            <!-- Info line for Leganto reading-list display -->
+            <h1 class="fields_info">For Leganto reading-list display...</h1>
+            
+            <!-- Year Field -->
+            {{ form.year.errors }}
+            {{ form.year.label_tag }}
+            {{ form.year }}
+            <span style="font-size: 0.8em; font-style: italic; color: rgb(68, 57, 57);">( four-digit-year, eg 2023 )</span>
+            <br>
+            
+            <!-- Term Field -->
+            {{ form.term.errors }}
+            {{ form.term.label_tag }}
+            {{ form.term }}
+            <br>
+
+            <!-- Course-Title Field -->
+            {{ form.course_title.errors }}
+            {{ form.course_title.label_tag }}
+            {{ form.course_title }}
+            <br>
+            
+            <!-- Submit Button -->
+            <input type="submit" value="Submit" style="display: block; margin: 2em auto 0; width: 10em;">
+        </form>
+    </fieldset>
+
+    <div id="usage" style="font-style: italic; margin-top: 1.5em;">
+        <p>Usage:</p>
+        <p>(all fields required)</p>
+        <ul>
+            <li style="margin-bottom: 0.5em;">Enter a course-code and instructor-email (for the OCRA search).</li>
+            <li style="margin-bottom: 0.5em;">Enter the Year, Term, and Title (for the reading-list-file).</li>
+            <!-- <li style="margin-bottom: 0.5em;">Enter the term for the Leganto reading-list course-code field.</li> -->
+            <!-- <li style="margin-bottom: 0.5em;">Enter the course-title for the Leganto reading-list course-title field.</li> -->
+            <li style="margin-bottom: 0.5em;">Click the "Submit" button.</li>
+            <li style="margin-bottom: 0.5em;">OCRA will be searched for reading-list data, and a downloadable tab-separated-values (TSV) file for Leganto will be prepared.</li>
+        </ul>
+    </div>
+
+</div>
+
+<hr>
+
+{% endblock content %}
