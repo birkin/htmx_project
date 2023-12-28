@@ -10,11 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+## python imports ---------------------------------------------------
 import json, logging, os, pprint
 from pathlib import Path
 
+## 3rd-party imports ------------------------------------------------
+from dotenv import load_dotenv
+
+## load envars ------------------------------------------------------
+dotenv_path = Path(__file__).parent.parent.parent / 'settings_dotenv/.env'  # parents: config --> htmx_project --> htmx_stuff
+load_dotenv( dotenv_path=dotenv_path, verbose=True, override=True )
+
+## initialize logger ------------------------------------------------
 log = logging.getLogger(__name__)
 
+## ok, settings! ----------------------------------------------------
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,15 +37,15 @@ print( f'BASE_DIR, ``{BASE_DIR}``' )
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-3ory+ty87_wq8-21ki6d&a+x=z9_$2m(gr4@vxri@@^g7u!*oc'
-SECRET_KEY = os.environ[ 'OCRA_LKP__SECRET_KEY' ]
+SECRET_KEY = os.environ[ 'HTMX__SECRET_KEY' ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = json.loads( os.environ['OCRA_LKP__DEBUG_JSON'] )
+DEBUG = json.loads( os.environ['HTMX__DEBUG_JSON'] )
 
-ADMINS = json.loads( os.environ['OCRA_LKP__ADMINS_JSON'] )
+ADMINS = json.loads( os.environ['HTMX__ADMINS_JSON'] )
 
-ALLOWED_HOSTS = json.loads( os.environ['OCRA_LKP__ALLOWED_HOSTS_JSON'] )
+ALLOWED_HOSTS = json.loads( os.environ['HTMX__ALLOWED_HOSTS_JSON'] )
 
 
 # Application definition
@@ -47,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ocra_lookup_app',
+    'htmx_app',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +95,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = json.loads( os.environ['OCRA_LKP__DATABASES_JSON'] )
+DATABASES = json.loads( os.environ['HTMX__DATABASES_JSON'] )
 
 # DATABASES = {
 #     'default': {
@@ -131,13 +141,13 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = os.environ['OCRA_LKP__STATIC_URL']
-STATIC_ROOT = os.environ['OCRA_LKP__STATIC_ROOT']  # needed for collectstatic command
+STATIC_URL = os.environ['HTMX__STATIC_URL']
+STATIC_ROOT = os.environ['HTMX__STATIC_ROOT']  # needed for collectstatic command
 
 # Email
-SERVER_EMAIL = os.environ['OCRA_LKP__SERVER_EMAIL']
-EMAIL_HOST = os.environ['OCRA_LKP__EMAIL_HOST']
-EMAIL_PORT = int( os.environ['OCRA_LKP__EMAIL_PORT'] )
+SERVER_EMAIL = os.environ['HTMX__SERVER_EMAIL']
+EMAIL_HOST = os.environ['HTMX__EMAIL_HOST']
+EMAIL_PORT = int( os.environ['HTMX__EMAIL_PORT'] )
 
 
 # Default primary key field type
@@ -163,7 +173,7 @@ LOGGING = {
         'logfile': {
             'level':'DEBUG',
             'class':'logging.FileHandler',  # note: configure server to use system's log-rotate to avoid permissions issues
-            'filename': os.environ['OCRA_LKP__LOG_PATH'],
+            'filename': os.environ['HTMX__LOG_PATH'],
             'formatter': 'standard',
         },
         'console':{
@@ -180,7 +190,7 @@ LOGGING = {
         },
         'ocra_lookup_app': {
             'handlers': ['logfile'],
-            'level': os.environ['OCRA_LKP__LOG_LEVEL'],
+            'level': os.environ['HTMX__LOG_LEVEL'],
             'propagate': False
         },
         # 'django.db.backends': {  # re-enable to check sql-queries! <https://docs.djangoproject.com/en/3.2/topics/logging/#django-db-backends>
@@ -195,21 +205,9 @@ LOGGING = {
 # app-level settings
 # -------------------------------------------------------------------
 
-# PATTERN_LIB_HEADER_URL = os.environ['OCRA_LKP__PATTERN_LIB_HEADER_URL']
-# PATTERN_LIB_CACHE_TIMEOUT = int( os.environ['OCRA_LKP__PATTERN_LIB_CACHE_TIMEOUT_IN_HOURS'] )
+# PATTERN_LIB_HEADER_URL = os.environ['HTMX__PATTERN_LIB_HEADER_URL']
+# PATTERN_LIB_CACHE_TIMEOUT = int( os.environ['HTMX__PATTERN_LIB_CACHE_TIMEOUT_IN_HOURS'] )
 
-## scanned-files data ---------------------------
-PDF_JSON_PATH = os.environ['OCRA_LKP__PDF_JSON_PATH']
+## None yet
 
-PDF_DATA = {}  # will be auto-populated
-with open( PDF_JSON_PATH, encoding='utf-8' ) as f_reader:
-    jsn: str = f_reader.read()
-    PDF_DATA = json.loads( jsn )
-log.debug( f'pdf_data (partial), ``{pprint.pformat(PDF_DATA)[0:1000]}``' )
-
-PDF_OLDER_THAN_DAYS = int( os.environ['OCRA_LKP__PDF_OLDER_THAN_DAYS'] )
-PDF_SQL = os.environ['OCRA_LKP__PDF_SQL']
-
-FILES_URL_PATTERN = os.environ['OCRA_LKP__FILES_URL_PATTERN']
-
-TSV_OUTPUT_DIR_PATH = os.environ['OCRA_LKP__TSV_OUTPUT_DIR_PATH']
+## EOF ##
