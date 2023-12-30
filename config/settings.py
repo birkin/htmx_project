@@ -18,7 +18,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 ## load envars ------------------------------------------------------
-dotenv_path = Path(__file__).parent.parent.parent / 'settings_dotenv/.env'  # parents: config --> htmx_project --> htmx_stuff
+dotenv_path = Path(__file__).parent.parent.parent / '.env'  # parents: config --> htmx_project --> htmx_stuff
 load_dotenv( dotenv_path=dotenv_path, verbose=True, override=True )
 
 ## initialize logger ------------------------------------------------
