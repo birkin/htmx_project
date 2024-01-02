@@ -75,7 +75,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ '%s/ocra_lookup_app/templates' % BASE_DIR ],
+        'DIRS': [ '%s/htmx_app/templates' % BASE_DIR ],
         # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -188,7 +188,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'ocra_lookup_app': {
+        'htmx_app': {
             'handlers': ['logfile'],
             'level': os.environ['HTMX__LOG_LEVEL'],
             'propagate': False
