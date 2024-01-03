@@ -14,7 +14,7 @@ urlpatterns = [
     path( 'version/', views.version, name='version_url' ),
 
     ## htmx experimentation -----------------------------------------
-    path( 'htmx_example/', views.htmx_example, name='htmx_example_url' ),
+    path( 'htmx_examples/', views.htmx_examples, name='htmx_examples_url' ),
     path( 'htmx_f__new_content/', views.htmx_f__new_content, name='htmx_f__new_content_url' ),
     path( 'htmx_f__email_validator/', views.htmx_f__email_validator, name='htmx_f__email_validator_url' ),
     path( 'htmx_f__form_handler/', views.htmx_f__form_handler, name='htmx_f__form_handler_url' ),
