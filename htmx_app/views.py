@@ -82,19 +82,19 @@ def error_check( request ):
         - run, in another terminal window: `python -m smtpd -n -c DebuggingServer localhost:1026`,
         - (or substitue your own settings for localhost:1026)
     """
-    log.debug( 'starting error_check()' )
+    log.info( '\n\nstarting error_check()' )
     log.debug( f'settings.DEBUG, ``{settings.DEBUG}``' )
     if settings.DEBUG == True:
         log.debug( 'triggering exception' )
         raise Exception( 'Raising intentional exception.' )
     else:
-        log.debug( 'returing 404' )
+        log.debug( 'returning 404' )
         return HttpResponseNotFound( '<div>404 / Not Found</div>' )
 
 
 def version( request ):
     """ Returns basic branch and commit data. """
-    log.debug( 'starting version()' )
+    log.info( '\n\nstarting version()' )
     rq_now = datetime.datetime.now()
     gatherer = GatherCommitAndBranchData()
     trio.run( gatherer.manage_git_calls )
