@@ -27,7 +27,7 @@ export HTMX__DATABASES_JSON='
       "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "HOST": "",
-        "NAME": "../DB/ocra_lookup_project.sqlite3",
+        "NAME": "../DB/htmx_project.sqlite3",
         "PASSWORD": "",
         "PORT": "",
         "USER": ""
@@ -42,7 +42,7 @@ export HTMX__EMAIL_HOST="localhost"
 export HTMX__EMAIL_PORT="1026"  # will be converted to int in settings.py
 export HTMX__SERVER_EMAIL="donotreply_x-project@domain.edu"
 
-export HTMX__LOG_PATH="../logs/ocra_lookup_project.log"
+export HTMX__LOG_PATH="../logs/htmx_project.log"
 export HTMX__LOG_LEVEL="DEBUG"
 
 export HTMX__CSRF_TRUSTED_ORIGINS_JSON='["localhost", "127.0.0.1"]'
@@ -89,7 +89,7 @@ export HTMX__TEST_META_DCT_JSON='{
   "Shibboleth-isMemberOf": "aa:bb:cc;dd:ee:ff;the:group;gg:hh"
 }'
 
-export HTMX__LOGIN_PROBLEM_EMAIL="ocra_lookup_project_problems@domain.edu"
+export HTMX__LOGIN_PROBLEM_EMAIL="htmx_project_problems@domain.edu"
 
 
 ## end --------------------------------------------------------------

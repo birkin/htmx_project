@@ -16,7 +16,7 @@
 # ## sets the working directory inside your container 
 # ##  - if it doesn't exist, Docker will create it. 
 # ##  - all RUN commands that follow will be run from this directory.
-# WORKDIR /container_project_stuff/ocra_lookup_project
+# WORKDIR /container_project_stuff/htmx_project
 
 # ## creates a 'logs' directory within the container
 # RUN mkdir /container_project_stuff/logs
@@ -24,8 +24,8 @@
 # ## creates an 'example_data_source' directory within the container
 # RUN mkdir /container_project_stuff/example_data_source
 
-# ## copies the contents of the current host directory (django_template_42_project) into the container at /container_project_stuff/ocra_lookup_project
-# COPY . /container_project_stuff/ocra_lookup_project/
+# ## copies the contents of the current host directory (django_template_42_project) into the container at /container_project_stuff/htmx_project
+# COPY . /container_project_stuff/htmx_project/
 
 # ## runs the pip install command inside the container
 # RUN pip install -r ./config/requirements_localdev.txt 

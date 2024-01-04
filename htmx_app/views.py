@@ -31,7 +31,7 @@ def root( request ):
 @ensure_csrf_cookie
 def htmx_examples(request):
     """ From: <https://www.sitepoint.com/htmx-introduction/> """
-    return render( request, 'htmx_example.html' )
+    return render( request, 'htmx_examples.html' )
 
 
 def htmx_f__new_content(request):
