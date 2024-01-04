@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
+
 {% block extra_head %}
 
 <style>
 
-/* for ``example: input on return-key, with spinner`` */
+/* START ``example 4: input on return-key, with spinner`` */
 .loader {
     width: 48px;
     height: 48px;
@@ -23,9 +24,10 @@
         transform: rotate(360deg);
     }
 } 
+/* END ``example 4: input on return-key, with spinner`` */
 
 
-/* for ``example 5: new-content fade-in (of fragment)`` */
+/* START ``example 5: new-content fade-in (of fragment)`` */
 .fadeIn {
   animation: fadeIn 2.5s;
 }
@@ -33,15 +35,18 @@
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
+/* END ``example 5: new-content fade-in (of fragment)`` */
 
 </style>
 
-
 {% endblock extra_head %}
+
 
 {% block header %}
     <h1>htmx examples</h1>
+    <p>See the <a href="https://github.com/birkin/htmx_project/blob/main/README.md">readme</a> for more info.</p>
 {% endblock header %}
+
 
 {% block content %}
 
