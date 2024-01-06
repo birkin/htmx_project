@@ -41,7 +41,7 @@ def htmx_f__new_content(request):
     """
     html = '''
 <div id="example_5_content" class="fadeIn">
-    New Content -- New Content -- New Content 
+    <p>New Content -- New Content -- New Content</p>
 </div>
 '''
     return HttpResponse( html )
