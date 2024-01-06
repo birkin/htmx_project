@@ -199,13 +199,32 @@ div#title {
     <label>Email:
         <input type="email" name="email" required>
     </label>
-    <button>Submit</button>
+    <div>
+        <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+    </div>
 </form>
 
 <hr>
 <hr>
 
 <!-- ------------------------------------------------------------ -->
+
+<!-- 
+<h2>example 7: form-validation (server-side)</h2>
+
+<form hx-post="/htmx_f__form_handler/">
+    {% csrf_token %}
+    <div hx-target="this" hx-swap="outerHTML">
+        <label>Email:
+            <input type="email" name="email">
+        </label>
+    </div>
+    <div>
+        <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+    </div>
+</form>
+ -->
+
 
 <h2>example 7: form-validation (server-side)</h2>
 
@@ -216,8 +235,11 @@ div#title {
             <input type="email" name="email">
         </label>
     </div>
-    <button>Submit</button>
-</form>
+    <div>
+        <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+    </div>
+</form> 
+
   
 <hr>
 <hr>

@@ -34,6 +34,11 @@ def htmx_examples(request):
     return render( request, 'htmx_examples.html' )
 
 
+# -------------------------------------------------------------------
+# fragment urls
+# -------------------------------------------------------------------
+
+
 def htmx_f__new_content(request):
     """ Serves out content for htmx_example.html, specifically for 
     - ``example 5: new-content fade-in (of fragment)`` 
@@ -55,20 +60,43 @@ def htmx_f__email_validator(request):
     return HttpResponse( html )
 
 
+# def htmx_f__form_handler(request):
+#     """ Serves out content for `example 7: form-validation (server-side)`, 
+#         specifically for submit-form response. """
+#     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
+#     email_data = request.POST.get( 'email', '' )
+#     if email_data == '':
+#         html = '''
+# <p id="example6_error">email cannot be empty.</p>
+# <div hx-target="this" hx-swap="outerHTML">
+#     <label>Email:
+#         <input type="email" name="email">
+#     </label>
+# </div>
+# <div>
+#     <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+# </div>
+# '''
+#         return HttpResponse( html )
+#     else:
+#         return HttpResponseRedirect( reverse('htmx_results_url') )
+
+
 def htmx_f__form_handler(request):
     """ Serves out content for `example 7: form-validation (server-side)`, 
         specifically for submit-form response. """
     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
     email_data = request.POST.get( 'email', '' )
     if email_data == '':
-        html = '''<p>email cannot be empty.</p>'''
+        html = '''<p id="example6_error">email cannot be empty.</p>'''
         return HttpResponse( html )
     else:
         return HttpResponseRedirect( reverse('htmx_results_url') )
 
 
 def htmx_results(request):
-    return HttpResponse( 'htmx-experiment results coming' )
+    """ Serves content for `example 7: form-validation (server-side)`, on success. """
+    return HttpResponse( '<p>htmx-experiment results coming</p>' )
 
 
 # -------------------------------------------------------------------
