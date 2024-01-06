@@ -5,6 +5,10 @@
 
 <style>
 
+div#title {
+    margin-left: 3em;
+}
+
 /* START ``example 4: input on return-key, with spinner`` */
 .loader {
     width: 48px;
@@ -16,6 +20,7 @@
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     }
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -43,8 +48,10 @@
 
 
 {% block header %}
-    <h1>htmx examples</h1>
-    <p>See the <a href="https://github.com/birkin/htmx_project/blob/main/README.md">readme</a> for more info.</p>
+    <div id="title">
+        <h1>htmx examples</h1>
+        <p>See the <a href="https://github.com/birkin/htmx_project/blob/main/README.md">readme</a> for more info.</p>
+    </div>
 {% endblock header %}
 
 
@@ -52,6 +59,8 @@
 
 <hr>
 <hr>
+
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 1: button</h2>
 
@@ -66,6 +75,8 @@
 
 <hr>
 <hr>
+
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 2: input on return-key</h2>
 
@@ -83,6 +94,8 @@
 
 <hr>
 <hr>
+
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 3: input as-i-type, with delay</h2>
 
@@ -102,20 +115,11 @@
 <hr>
 <hr>
 
+<!-- ------------------------------------------------------------ -->
+
 <h2>example 4: input on return-key, with spinner</h2>
 
 <label>Keyword:
-    <!-- Original tutorial span:
-        <span class="loader htmx-indicator"></span>
-        The problem is that this adds a big space between the `example...` line and the `Keyword` line. -->
-
-    <!-- Trying:
-        <span class="loader htmx-indicator" style="visibility: hidden;"></span> 
-        No-go; this keeps the space, but does not show the spinner. -->
-
-    <!-- Trying: 
-        <span class="loader htmx-indicator" style="display: none;"></span> 
-        No-go; this eliminates the space, but also does not show the spinner -->
 
     <span id="span4" class="loader htmx-indicator"></span> <!-- class of "loader" is required; can't be changed even if hx-indicator matches the change -->
     <input
@@ -133,12 +137,26 @@
 <hr>
 <hr>
 
-
-
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 4.5: input on return-key, with spinner, without the space</h2>
 
 <label>Keyword:
+
+    <!-- Original tutorial span:
+        <span class="loader htmx-indicator"></span>
+        The problem is that this adds a big space between the `example...` line and the `Keyword` line. -->
+
+    <!-- Trying:
+        <span class="loader htmx-indicator" style="visibility: hidden;"></span> 
+        No-go; this keeps the space, but does not show the spinner. -->
+
+    <!-- Trying: 
+        <span class="loader htmx-indicator" style="display: none;"></span> 
+        No-go; this eliminates the space, but also does not show the spinner -->
+
+    <!-- The solution: adding the negative margin. -->
+
     <span id="span45" class="loader htmx-indicator" style="margin: -1em;"></span> <!-- only addition is the margin-style -->
     <input
         type="text"
@@ -155,24 +173,24 @@
 <hr>
 <hr>
 
-
-
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 5: new-content fade-in (of fragment)</h2>
 
 <button 
     hx-get="/htmx_f__new_content/" 
     hx-target="#example_5_content">
-
     Fetch Data
 </button>
   
 <div id="example_5_content">
-    Initial Content -- Initial Content -- Initial content
+    <p>Initial Content -- Initial Content -- Initial content</p>
 </div>
   
 <hr>
 <hr>
+
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 6: form-validation (client-side-only)</h2>
 
@@ -186,6 +204,8 @@
 
 <hr>
 <hr>
+
+<!-- ------------------------------------------------------------ -->
 
 <h2>example 7: form-validation (server-side)</h2>
 
