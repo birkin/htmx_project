@@ -9,8 +9,9 @@ urlpatterns = [
 
     ## support fragments --------------------------------------------
     path( 'htmx_f__new_content/', views.htmx_f__new_content, name='htmx_f__new_content_url' ),
+    
     path( 'htmx_f__form_handler/', views.htmx_f__form_handler, name='htmx_f__form_handler_url' ),
-    # path( 'htmx_results/', views.htmx_results, name='htmx_results_url' ),
+    path( 'htmx_f__example_7_invalid/', views.htmx_f__example_7_invalid, name='htmx_f__example_7_invalid_url' ),
     path( 'htmx_f__example_7_success/', views.htmx_f__example_7_success, name='htmx_f__example_7_success_url' ),
 
     ## other --------------------------------------------------------

@@ -1,0 +1,12 @@
+<form hx-post="/htmx_f__form_handler/">
+    <p id="example_7_error_message" style="color: red; font-weight: bold;">{{ example_7_error_message }}</p>
+    {% csrf_token %}
+    <div hx-target="this" hx-swap="outerHTML">
+        <label>Email:
+            <input type="email" name="email">
+        </label>
+    </div>
+    <div>
+        <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+    </div>
+</form>

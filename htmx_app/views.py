@@ -77,29 +77,42 @@ def htmx_f__new_content(request):
 #         return HttpResponseRedirect( reverse('htmx_results_url') )
 
 
+# def htmx_f__form_handler(request):
+#     """ Serves out content for `example 7: form-validation (server-side)`, 
+#         specifically for submit-form response. """
+#     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
+#     email_data = request.POST.get( 'email', '' )
+#     if email_data == '':
+#         html = '''
+# <p id="example6_error">email cannot be empty.</p>
+# <div hx-target="this" hx-swap="outerHTML">
+#     <label>Email:
+#         <input type="email" name="email">
+#     </label>
+# </div>
+# <div>
+#     <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+# </div>
+# '''
+#         return HttpResponse( html )
+#     else:
+#         return HttpResponseRedirect( reverse('htmx_f__example_7_success_url') )
+
+
 def htmx_f__form_handler(request):
     """ Serves out content for `example 7: form-validation (server-side)`, 
         specifically for submit-form response. """
     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
     email_data = request.POST.get( 'email', '' )
-    if email_data == '':
-        html = '''
-<p id="example6_error">email cannot be empty.</p>
-<div hx-target="this" hx-swap="outerHTML">
-    <label>Email:
-        <input type="email" name="email">
-    </label>
-</div>
-<div>
-    <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
-</div>
-'''
-        return HttpResponse( html )
+    email_data_valid = False  # would be determined by a validator
+    if email_data == False:
+        return HttpResponseRedirect( reverse('htmx_f__example_7_invalid_url') )
     else:
         return HttpResponseRedirect( reverse('htmx_f__example_7_success_url') )
 
-
-
+def htmx_f__example_7_invalid(request):
+    """ Serves content for `example 7: form-validation (server-side)`, when invalid. """
+    return render( request, 'htmx_f_form_failure.html', context={'example_7_error_message': "email cannot be blank"} )
 
 def htmx_f__example_7_success(request):
     """ Serves content for `example 7: form-validation (server-side)`, on success. """
