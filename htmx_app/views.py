@@ -39,24 +39,29 @@ def htmx_examples(request):
 # -------------------------------------------------------------------
 
 
+# def htmx_f__new_content(request):
+#     """ Serves out content for htmx_example.html, specifically for 
+#     - ``example 5: new-content fade-in (of fragment)`` 
+#     - ``example 6: form-validation (client-side-only)``
+#     """
+#     html = '''
+# <div id="example_5_an_content" class="fadeIn">
+#     <p>New Content -- New Content -- New Content</p>
+# </div>
+# '''
+#     return HttpResponse( html )
+
+
 def htmx_f__new_content(request):
     """ Serves out content for htmx_example.html, specifically for 
     - ``example 5: new-content fade-in (of fragment)`` 
     - ``example 6: form-validation (client-side-only)``
     """
     html = '''
-<div id="example_5_content" class="fadeIn">
+<div class="fadeIn">
     <p>New Content -- New Content -- New Content</p>
 </div>
 '''
-    return HttpResponse( html )
-
-
-def htmx_f__email_validator(request):
-    """ Serves out content for `example 7: form-validation (server-side)`, 
-        specifically for email-validator response. """
-    log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
-    html = '<p>email-validator response</p>'
     return HttpResponse( html )
 
 
@@ -66,17 +71,7 @@ def htmx_f__email_validator(request):
 #     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
 #     email_data = request.POST.get( 'email', '' )
 #     if email_data == '':
-#         html = '''
-# <p id="example6_error">email cannot be empty.</p>
-# <div hx-target="this" hx-swap="outerHTML">
-#     <label>Email:
-#         <input type="email" name="email">
-#     </label>
-# </div>
-# <div>
-#     <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
-# </div>
-# '''
+#         html = '''<p id="example6_error">email cannot be empty.</p>'''
 #         return HttpResponse( html )
 #     else:
 #         return HttpResponseRedirect( reverse('htmx_results_url') )
@@ -88,13 +83,25 @@ def htmx_f__form_handler(request):
     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
     email_data = request.POST.get( 'email', '' )
     if email_data == '':
-        html = '''<p id="example6_error">email cannot be empty.</p>'''
+        html = '''
+<p id="example6_error">email cannot be empty.</p>
+<div hx-target="this" hx-swap="outerHTML">
+    <label>Email:
+        <input type="email" name="email">
+    </label>
+</div>
+<div>
+    <button style="margin-top: 1em; margin-bottom: .75em;">Submit</button>
+</div>
+'''
         return HttpResponse( html )
     else:
-        return HttpResponseRedirect( reverse('htmx_results_url') )
+        return HttpResponseRedirect( reverse('htmx_f__example_7_success_url') )
 
 
-def htmx_results(request):
+
+
+def htmx_f__example_7_success(request):
     """ Serves content for `example 7: form-validation (server-side)`, on success. """
     return HttpResponse( '<p>htmx-experiment results coming</p>' )
 
