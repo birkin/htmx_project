@@ -1,4 +1,4 @@
-import datetime, json, logging, os, pprint
+import datetime, json, logging, os, pprint, random
 
 import trio
 # from .forms import CourseAndEmailForm
@@ -104,11 +104,13 @@ def htmx_f__form_handler(request):
         specifically for submit-form response. """
     log.debug( f'request.POST, ``{pprint.pformat(request.POST)}``' )
     email_data = request.POST.get( 'email', '' )
-    email_data_valid = False  # would be determined by a validator
-    if email_data == False:
+    email_data_valid: int = random.randint(0, 1)  # would be determined by a validator
+    from htmx_app.lib.email_validator import validate_email
+    if validate_email( email_data ) == False:
         return HttpResponseRedirect( reverse('htmx_f__example_7_invalid_url') )
     else:
         return HttpResponseRedirect( reverse('htmx_f__example_7_success_url') )
+        # return HttpResponseRedirect( reverse('htmx_f__new_content_url') )
 
 def htmx_f__example_7_invalid(request):
     """ Serves content for `example 7: form-validation (server-side)`, when invalid. """
@@ -116,7 +118,14 @@ def htmx_f__example_7_invalid(request):
 
 def htmx_f__example_7_success(request):
     """ Serves content for `example 7: form-validation (server-side)`, on success. """
-    return HttpResponse( '<p>htmx-experiment results coming</p>' )
+    # return HttpResponse( '<p>htmx-experiment results coming</p>' )
+    # return HttpResponseRedirect( reverse('htmx_f__new_content_url') )
+    html = '''
+<div class="fadeIn">
+    <p>New Content -- New Content -- New Content</p>
+</div>
+'''
+    return HttpResponse( html )
 
 
 # -------------------------------------------------------------------
